@@ -11,10 +11,8 @@ import { Comment } from '../core/models/comment';
 })
 export class HomeComponent implements OnInit {
 
-  public $posts: Observable<Post[]>;
-
   constructor(public crud: CrudService) {
-    this.$posts = this.crud.getAllPost();
+    this.crud.fetchPosts();
   }
 
   ngOnInit() { }

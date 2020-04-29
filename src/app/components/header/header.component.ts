@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CrudService } from 'src/app/core/services/crud.service';
-import { Post } from 'src/app/core/models/post';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal/';
 import { NewPostComponent } from '../new-post/new-post.component';
 
@@ -9,32 +8,27 @@ import { NewPostComponent } from '../new-post/new-post.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   bsModalRef: BsModalRef;
 
-  public newPost: Post;
   constructor(
     public crud: CrudService,
     private modalService: BsModalService) { }
 
-  ngOnInit() {
-  }
-
-  save() {
-    console.log(this.crud.createPost(this.newPost));
+  save(newPost) {
+    this.crud.createPost(newPost).subscribe(
+      res => {
+        this.bsModalRef.hide();
+        this.crud.fetchPosts();
+      },
+      err => {
+        console.error(err);
+        this.bsModalRef.hide();
+      });
   }
 
   addPost() {
-    const initialState = {
-      list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
-      title: 'Modal with component'
-    };
-    this.bsModalRef = this.modalService.show(NewPostComponent, { initialState });
-    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef = this.modalService.show(NewPostComponent);
+    this.bsModalRef.content.newPost.subscribe(newPost => this.save(newPost));
   }
 }

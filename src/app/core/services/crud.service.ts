@@ -9,10 +9,13 @@ import { Comment } from '../models/comment';
 })
 export class CrudService {
 
+  public $posts: Observable<Post[]>;
   constructor(private http: HttpClient) {
-
   }
 
+  fetchPosts(): void {
+    this.$posts = this.getAllPost();
+  }
   getAllPost(): Observable<Post[]> {
     return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
   }

@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Post, PostClass } from 'src/app/core/models/post';
 
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.scss']
 })
-export class NewPostComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
-  list: any[] = [];
+export class NewPostComponent {
+
+  @Output() newPost = new EventEmitter<Post>();
+  public post = new PostClass();
+
   constructor(public bsModalRef: BsModalRef) { }
 
-  ngOnInit() {
+  save() {
+    this.newPost.emit(this.post);
   }
-
 }

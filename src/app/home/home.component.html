@@ -1,5 +1,5 @@
 <div class="container">
   <div class="d-flex flex-wrap justify-content-around">
-    <app-post *ngFor="let post of $posts | async" [post]="post"></app-post>
+    <app-post *ngFor="let post of crud.$posts | async" [post]="post" class="m-4"></app-post>
   </div>
 </div>
