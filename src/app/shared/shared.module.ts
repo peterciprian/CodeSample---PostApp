@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './components/post/post.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [PostComponent],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot()
   ],
   exports: [
-    HttpClientModule
+    HttpClientModule,
+    PostComponent,
+    ModalModule
   ]
 })
 export class SharedModule { }

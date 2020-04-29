@@ -19,7 +19,7 @@ export class CrudService {
   getCommentsByPostId(id): Observable<Comment[]> {
     return this.http.get<Comment[]>(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
   }
-  postPost(post) {
+  createPost(post) {
     const headers = new HttpHeaders();
     return this.http.post('https://jsonplaceholder.typicode.com/posts', post, { headers });
   }
