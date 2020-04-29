@@ -12,10 +12,14 @@ body {
 
 .success {
   background-color: green;
-  z-index: 1197;
 }
 
 .error {
   background-color: red;
-  z-index: 1198;
+}
+
+snack-bar-container {
+  &.lift {
+    margin-bottom: 50px;
+  }
 }
