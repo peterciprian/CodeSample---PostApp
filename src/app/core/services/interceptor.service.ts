@@ -3,25 +3,43 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, retry, tap } from 'rxjs/operators';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
+  public isLoading = false;
+  constructor(private notification: NotificationService) { }
 
-  constructor() { }
-
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    return next.handle(req)/* .pipe(
-      tap(data => console.log(data)),
-      catchError(err => throwError(err))
-    ) */;
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.method === 'POST') {
+      return next.handle(request).pipe(
+        tap((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse && event.status === 201) {
+            this.notification.showSuccess('Operation successful');
+          }
+        }),
+        retry(1),
+        catchError((error: HttpErrorResponse) => {
+          this.notification.showError(error.message);
+          return throwError(error);
+        })
+      );
+    } else {
+      return next.handle(request).pipe(
+        retry(1),
+        catchError((error: HttpErrorResponse) => {
+          this.notification.showError(error.message);
+          return throwError(error);
+        })
+      );
+    }
   }
 }

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './components/post/post.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -15,14 +15,14 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    AngularFontAwesomeModule
+    MatSnackBarModule
   ],
   exports: [
     FormsModule,
     HttpClientModule,
     PostComponent,
     ModalModule,
-    AngularFontAwesomeModule
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }

@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NewPostComponent } from './components/new-post/new-post.component';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   entryComponents: [NewPostComponent],

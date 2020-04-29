@@ -18,7 +18,7 @@ const coreServices: any[] = [
     useValue: (route: ActivatedRouteSnapshot) => {
       const externalUrl = route.paramMap.get('externalUrl');
       window.open(externalUrl, '_self');
-    }
+    },
   },
   CrudService
 ];
