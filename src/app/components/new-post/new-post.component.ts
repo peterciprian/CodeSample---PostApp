@@ -11,10 +11,11 @@ export class NewPostComponent {
 
   @Output() newPost = new EventEmitter<Post>();
   public post = new PostClass();
-
+  public isLoading = false;
   constructor(public bsModalRef: BsModalRef) { }
 
   save() {
+    this.isLoading = true;
     this.newPost.emit(this.post);
   }
 }

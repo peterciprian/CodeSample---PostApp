@@ -25,5 +25,9 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-outline-info" (click)="save()">save</button>
+  <button class="btn btn-outline-info" (click)="save()" [disabled]="isLoading">
+    <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span *ngIf="isLoading" class="ml-2">Loading...</span>
+    <span *ngIf="!isLoading">Save</span>
+  </button>
 </div>
