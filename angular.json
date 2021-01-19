@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bitNinja-PostApp": {
+    "PostApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bitNinja-PostApp",
+            "outputPath": "dist/PostApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bitNinja-PostApp:build"
+            "browserTarget": "PostApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bitNinja-PostApp:build:production"
+              "browserTarget": "PostApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bitNinja-PostApp:build"
+            "browserTarget": "PostApp:build"
           }
         },
         "test": {
@@ -119,16 +119,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bitNinja-PostApp:serve"
+            "devServerTarget": "PostApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bitNinja-PostApp:serve:production"
+              "devServerTarget": "PostApp:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "bitNinja-PostApp"
+  "defaultProject": "PostApp"
 }
